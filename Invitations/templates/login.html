@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}  
+        <label for="username">Enter username</label>
+        <input type="text" name="username" id="">
+        <br> <br>
+        <label for="password">Enter password</label>
+        <input type="password" name="pass" id="">
+        <br> <br>
+       <button class='btn btn-outline-success'type="submit">Login</button>
+       <br>  <br>
+       {% if error %}
+           <strong>{{error}}</strong>
+       {% endif %}
+       </form>
+       <p>dont have a account???<a class='btn btn-outline-primary'href="{% url 'register' %}">register here</a>
+       </p>
+</body>
+</html>
