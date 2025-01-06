@@ -7,7 +7,7 @@ from Inviter.models import *
 from django.contrib.auth.hashers import check_password
 
 def index(request):
-    return HttpResponse('Hellooo...')
+    return render(request, 'invitee/event_details.html')
 
 class Login(View):
     template_name = 'login.html'
