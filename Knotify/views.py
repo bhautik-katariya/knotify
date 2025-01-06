@@ -27,13 +27,14 @@ class Login(View):
                 try:
                     user = Invitee.objects.get(username=username)
                 except Invitee.DoesNotExist:
-                    form.add_error(None, 'Invalid username or password')
-
+                    form.add_error('username', 'Invalid username')
             elif role == 'inviter':
                 try:
                     user = Inviter.objects.get(username=username)
                 except Inviter.DoesNotExist:
-                    form.add_error(None, 'Invalid username or password')
+                    form.add_error('username', 'Invalid username')
+            else: 
+                form.add_error('user_role','select any one role')
 
             if user:
                 if check_password(password, user.password):
@@ -42,7 +43,7 @@ class Login(View):
                     elif role == 'inviter':
                         return redirect('inviter:index')
                 else:
-                    form.add_error(None, 'Invalid username or password')
+                    form.add_error('password', 'Invalid password')
 
         return render(request, self.template_name, {'form': form})
 
