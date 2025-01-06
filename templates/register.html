@@ -1,0 +1,16 @@
+{% extends "base_temp.html" %}
+
+{% block title %}
+    Wedding Invitation 
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+        <button class='btn btn-outline-success'type="submit">submit</button>
+    </form>
+    <br> 
+    <p>Already have an account? <a class='btn btn-outline-primary'href="{% url 'login' %}">login here</a></p>
+{% endblock %}
