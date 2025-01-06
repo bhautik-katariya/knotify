@@ -12,7 +12,7 @@ class Invitee(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) 
     
     class Meta:
-        verbose_name = "Inviter"
+        verbose_name = "Invitee"
 
     def __str__(self):
         return self.name 

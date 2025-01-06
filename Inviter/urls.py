@@ -3,6 +3,8 @@ from . import views
 
 app_name = 'inviter'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.dashboard, name='dashboard'),
+    path('add/', views.add, name='add'),
+    
    
 ] 
