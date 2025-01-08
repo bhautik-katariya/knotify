@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
 from django.views import View
 from .forms import *
 from Invitee.models import *
@@ -38,11 +37,11 @@ class Login(View):
 
             if user:
                 if check_password(password, user.password):
-                    if role == 'invitee':
+                    if role == 'invitee':                                               
                         request.session['username'] = username
-                        return redirect('invitee:index')
+                        return redirect('index')
                     elif role == 'inviter':
-                        return redirect('inviter:index')
+                        return redirect('inviter:dashboard')
                 else:
                     form.add_error('password', 'Invalid password')
 
@@ -50,7 +49,7 @@ class Login(View):
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             user_role = form.cleaned_data['user_role']
             data = {
@@ -71,6 +70,6 @@ def register(request):
             else:
                 form.add_error('user_role', 'Select any one of these')
     else:
-        form = RegistrationForm()
+        form = UserForm()
     return render(request, 'register.html', {'form':form})
 

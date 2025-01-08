@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
     password =forms.CharField(max_length=100,widget=forms.PasswordInput())
     
-class RegistrationForm(forms.Form):
+class UserForm(forms.Form):
     USER_ROLE = [
         ('invitee','Invitee'),
         ('inviter','Inviter'),
