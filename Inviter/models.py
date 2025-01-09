@@ -1,4 +1,5 @@
 from django.db import models
+from Invitee.models import *
 
 # Create your models here.
 
@@ -18,15 +19,16 @@ class Inviter(models.Model):
         return self.username
      
 class EventDetails(models.Model):
-    username = models.ForeignKey(Inviter,on_delete=models.CASCADE)
+    inviter = models.ForeignKey(Inviter,on_delete=models.CASCADE)
     e_name = models.CharField(max_length=100,verbose_name='Event Name')
     g_name = models.CharField(max_length=50,verbose_name='Groom Name')
     b_name = models.CharField(max_length=50,verbose_name='Bride Name')
     e_date = models.DateTimeField(verbose_name='Event Date')
     place = models.CharField(max_length=500)
+    invitee = models.ManyToManyField(Invitee, related_name='event')
     
     class Meta:
         verbose_name = 'Event Details'
         
     def __str__(self):
-        return f'{self.username.username} {self.e_name}'
+        return f'{self.inviter.username} {self.e_name}'

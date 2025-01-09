@@ -23,11 +23,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Login.as_view(), name='login'),
-    path('index/', views.index, name='index'),
+    path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     path('invitee/', include('Invitee.urls',namespace='invitee')),
     path('inviter/', include('Inviter.urls',namespace='inviter')),
-
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block title %}
+
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
 </head>
 <body>
     <header class="navbar">
@@ -23,11 +24,12 @@
                 <li><a href="#rsvp">RSVP</a></li>
             </ul>
         </nav>
-        <a href="#rsvp" class="btn">Book Attendance</a>
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
     </header>
     <main class="hero">
         <div class="content">
             {% block content %}
+
             {% endblock %}
         </div>
     </main>

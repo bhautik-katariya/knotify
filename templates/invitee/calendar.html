@@ -1,0 +1,79 @@
+{% extends "base_temp2.html" %}
+
+{% block title %}
+    Calendar
+{% endblock %}
+
+{% block content %}
+<div class="calendar">
+    <div class="calendar-header">
+        <button id="prevMonth">&lt;</button>
+        <h2 id="monthYear"></h2>
+        <button id="nextMonth">&gt;</button>
+    </div>
+
+    <div class="days-header">
+    <div>Sun</div>
+    <div>Mon</div>
+    <div>Tue</div>
+    <div>Wed</div>
+    <div>Thu</div>
+    <div>Fri</div>
+    <div>Sat</div>
+</div>
+
+    <div class="days" id="calendarDays">
+        <!-- Calendar days will be dynamically generated here -->
+    </div>
+</div>
+<script>
+    const monthYear = document.getElementById('monthYear');
+    const calendarDays = document.getElementById('calendarDays');
+    const prevMonth = document.getElementById('prevMonth');
+    const nextMonth = document.getElementById('nextMonth');
+
+    let date = new Date();
+
+    function renderCalendar() {
+        calendarDays.innerHTML = '';
+        const currentYear = date.getFullYear();
+        const currentMonth = date.getMonth();
+
+        monthYear.textContent = `${date.toLocaleString('default', { month: 'long' })} ${currentYear}`;
+
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // Add blank days for the first week
+        for (let i = 0; i < firstDay; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.classList.add('day');
+            calendarDays.appendChild(emptyDay);
+        }
+
+        // Add days of the month
+        for (let i = 1; i <= daysInMonth; i++) {
+            const day = document.createElement('div');
+            day.classList.add('day');
+            day.textContent = i;
+            day.dataset.date = `${currentYear}-${currentMonth + 1}-${i}`;
+            day.addEventListener('click', () => {
+                window.location.href = `/date/${day.dataset.date}`;
+            });
+            calendarDays.appendChild(day);
+        }
+    }
+
+    prevMonth.addEventListener('click', () => {
+        date.setMonth(date.getMonth() - 1);
+        renderCalendar();
+    });
+
+    nextMonth.addEventListener('click', () => {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
+</script>
+{% endblock %}

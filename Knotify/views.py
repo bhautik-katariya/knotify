@@ -39,8 +39,9 @@ class Login(View):
                 if check_password(password, user.password):
                     if role == 'invitee':                                               
                         request.session['username'] = username
-                        return redirect('index')
+                        return redirect('inviter:index')
                     elif role == 'inviter':
+                        request.session['username'] = username
                         return redirect('inviter:dashboard')
                 else:
                     form.add_error('password', 'Invalid password')
@@ -73,3 +74,7 @@ def register(request):
         form = UserForm()
     return render(request, 'register.html', {'form':form})
 
+def logout(request):
+    request.session.flush() # delete session and cookie and create empty session
+    # del request.session['username'] # deletes specific session key
+    return redirect('login')

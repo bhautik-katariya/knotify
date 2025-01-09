@@ -9,29 +9,19 @@ def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)  
         if form.is_valid():
-            # data = {
-            #     'username':request.session['username'],
-            #     'e_name':form.cleaned_data['e_name'],
-            #     'g_name':form.cleaned_data['g_name'],
-            #     'b_name':form.cleaned_data['b_name'],
-            #     'e_date':form.cleaned_data['e_date'],
-            #     'place':form.cleaned_data['place'], 
-            # }
-            # EventDetails.objects.create(**data)
             event = form.save(commit=False)
-            event.username = request.session['username']
+            username = request.session['username']
+            inviter = Inviter.objects.filter(username=username)
+            event.inviter = inviter
             event.save()
-            return redirect('dashboard')
+            return redirect('inviter:dashboard')
     else:
         form = EventForm()
     return render(request,{'form':form})
 
-def event_list(request):
-    events = EventDetails.objects.all()
-    return render(request,{'events':events})
-
 def dashboard(request):
-    return render(request,'inviter/dashboard.html')
+    events = EventDetails.objects.filter(username=request.session['username'])
+    return render(request,'inviter/dashboard.html',{'events':events})
 
 def event_update(request,id): 
     edetails = EventDetails.objects.get(id = id)
