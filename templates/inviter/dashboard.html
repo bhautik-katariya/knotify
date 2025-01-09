@@ -1,70 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Calendar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6fc;
-        }
+{% extends "inviter/base_temp.html" %}
 
-        .main {
-            margin-left: 270px;
-            padding: 20px;
-        }
+{% block title %}
+    Dynamic Calendar
+{% endblock %}
 
-        .calendar {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .calendar-header button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .calendar-header button:hover {
-            background-color: #0056b3;
-        }
-
-        .days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .day {
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .day:hover {
-            background-color: #e9ecef;
-        }
-    </style>
-</head>
-<body>
+{% block content %}      
     <div class="sidebar">
         <h2>SeekTask</h2>
         <ul>
@@ -85,6 +25,16 @@
                 <h2 id="monthYear"></h2>
                 <button id="nextMonth">&gt;</button>
             </div>
+
+            <div class="days-header">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
 
             <div class="days" id="calendarDays">
                 <!-- Calendar days will be dynamically generated here -->
@@ -142,5 +92,4 @@
 
         renderCalendar();
     </script>
-</body>
-</html>
+{% endblock %}

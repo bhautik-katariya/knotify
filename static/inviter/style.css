@@ -1,0 +1,163 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e26666;
+}
+
+.navbar .logo span {
+    color: #3d342b;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.navbar .btn {
+    background-color: #c91b1b;
+    color: white;
+    position: relative;
+    margin-right: 50px;
+    padding: 10px 15px;
+    border-radius: 5px; 
+    text-decoration: none;
+}
+
+.navbar .btn:hover{
+    background-color: #e26666;
+    color: black;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6fc;
+}
+
+.main {
+    margin-top: 70px;
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.calendar {
+    background-color: #f6c8cf;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-header button {
+    background-color: #c91b1b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendar-header button:hover {
+    background-color: #e26666;
+    color: black;
+}
+
+.days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: #0c0c0c;
+}
+
+.days-header div {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #c91b1b;
+    color: white;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.day {
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #f57981;
+}

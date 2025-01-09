@@ -1,89 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-        }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #555;
-            font-size: 16px;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #ffff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    <title>
+        {% block title %}
         
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e26666;
-        }
-        
-        .navbar .logo span {
-            color: #3d342b;
-        }
-        
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        .navbar ul li {
-            margin: 0 15px;
-        }
-        
-        .navbar ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-        
-        .navbar .btn {
-            background-color: #e26666;
-            color: white;
-            position: relative;
-            margin-right: 50px;
-            padding: 10px 15px;
-            border-radius: 5px; 
-            text-decoration: none;
-        }
-    </style>
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'inviter/style.css' %}">
 </head>
 <body>
     <header class="navbar">
@@ -112,5 +38,8 @@
             <li><a href="#">Activity</a></li>
         </ul>
     </div>
+    {% block content %}
+    
+    {% endblock %}
 </body>
 </html>
