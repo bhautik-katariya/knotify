@@ -17,10 +17,12 @@ def add_event(request):
             return redirect('inviter:dashboard')
     else:
         form = EventForm()
-    return render(request,{'form':form})
+    return render(request,'inviter/event_form.html',{'form':form})
 
 def dashboard(request):
-    events = EventDetails.objects.filter(username=request.session['username'])
+    username=request.session['username']
+    inviter = Inviter.objects.filter(username=username)
+    events = EventDetails.objects.filter(inviter=inviter)
     return render(request,'inviter/dashboard.html',{'events':events})
 
 def event_update(request,id): 
@@ -29,7 +31,7 @@ def event_update(request,id):
         form = EventForm(request.POST,instance=edetails)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('inviter:dashboard')
         else:
             form = EventForm(instance=edetails)
         return render(request,'inviter/dashboard.html')
@@ -48,7 +50,7 @@ def edit_profile(request):
                 'password':form.cleaned_data['password'],
             }
             eprofile.update(**data)
-            return redirect('dashboard')
+            return redirect('inviter:dashboard')
         else:
             form = UserForm(instance=eprofile)
         return render(request,'inviter/dashboard.html')

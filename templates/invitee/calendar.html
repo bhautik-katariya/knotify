@@ -58,7 +58,14 @@
             day.textContent = i;
             day.dataset.date = `${currentYear}-${currentMonth + 1}-${i}`;
             day.addEventListener('click', () => {
-                window.location.href = `/date/${day.dataset.date}`;
+                const dateClicked = day.dataset.date;
+                console.log(dateClicked);  // Check what value is being logged here
+                if (dateClicked) {
+                    // Redirect to the URL pattern defined in Django
+                    window.location.href = `{% url 'invitee:date_event' date='${encodeURIComponent(dateClicked)}' %}`;
+                } else {
+                    console.error("Date is empty!");
+                }
             });
             calendarDays.appendChild(day);
         }

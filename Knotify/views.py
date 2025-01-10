@@ -39,7 +39,7 @@ class Login(View):
                 if check_password(password, user.password):
                     if role == 'invitee':                                               
                         request.session['username'] = username
-                        return redirect('inviter:index')
+                        return redirect('invitee:index')
                     elif role == 'inviter':
                         request.session['username'] = username
                         return redirect('inviter:dashboard')
