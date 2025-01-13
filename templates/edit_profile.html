@@ -1,0 +1,27 @@
+{% extends "base_temp2.html" %}
+
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        {{form.username}}
+        <br>
+        <label for="f_name">First Name</label>
+        {{form.f_name}}
+        <br>
+        <label for="l_name">Last Name</label>
+        {{form.l_name}}
+        <br>
+        <label for="email">Email</label>
+        {{form.email}}
+        <br>
+        <label for="phone_no">Phone No</label>
+        {{form.phone_no}}
+        <br>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

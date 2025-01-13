@@ -4,8 +4,38 @@
     Dashboard
 {% endblock %}
 
-{% block content %}   
-    <div class="main">
-        
-    </div>
+{% block content %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'inviter:add_event' %}" class='btn'>Add Event</a>
+            <a href="{% url 'edit_profile' %}" class='btn'>Edit Profile</a>
+          </div>
+        <br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Event</th>
+                    <th>Groom</th>
+                    <th>Bride</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Place</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in events %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ e.e_name }}</td>
+                        <td>{{ e.g_name }}</td>
+                        <td>{{ e.b_name }}</td>
+                        <td>{{ e.e_date|date:"d F Y" }}</td>
+                        <td>{{ e.e_date|date:"l" }}</td>              
+                        <td>{{ e.e_date|time:"g:i A" }}</td>
+                        <td>{{ e.place }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}

@@ -15,4 +15,4 @@ class Invitee(models.Model):
         verbose_name = "Invitee"
 
     def __str__(self):
-        return self.name 
+        return self.username 

@@ -64,3 +64,45 @@ class UserForm(forms.Form):
         else:
             cleaned_data['password'] = make_password(password)
         return cleaned_data
+    
+class ProfileForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    f_name = forms.CharField(max_length=100, label='First name') 
+    l_name = forms.CharField(max_length=100, label='Last name')    
+    email = forms.EmailField()  
+    phone_no = forms.CharField(max_length=15) 
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)  # Get the request object
+        super().__init__(*args, **kwargs)
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        current_username = self.request.session['username']
+        if Invitee.objects.filter(username=username).exclude(username=current_username).exists() or Inviter.objects.filter(username=username).exclude(username=current_username).exists():
+            raise ValidationError("This username is already taken.")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user_role = self.request.session['user_role']
+        current_username = self.request.session['username']
+        if user_role == 'invitee':
+            if Invitee.objects.filter(email=email).exclude(username=current_username).exists():
+                raise ValidationError("This email is already registered for Invitee.")
+        elif user_role == 'inviter':
+            if Inviter.objects.filter(email=email).exclude(username=current_username).exists():
+                raise ValidationError("This email is already registered for Inviter.")
+        return email
+    
+    def clean_phone_no(self):
+        phone_no = self.cleaned_data['phone_no']
+        user_role = self.request.session['user_role']
+        current_username = self.request.session['username']
+        if user_role == 'invitee':
+            if Invitee.objects.filter(phone_no=phone_no).exclude(username=current_username).exists():
+                raise ValidationError("This phone no is already registered for Invitee.")
+        elif user_role == 'inviter':
+            if Inviter.objects.filter(phone_no=phone_no).exclude(username=current_username).exists():
+                raise ValidationError("This phone no is already registered for Inviter.")
+        return phone_no

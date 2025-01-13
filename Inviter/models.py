@@ -18,9 +18,9 @@ class Inviter(models.Model):
     def __str__(self):
         return self.username
      
-class EventDetails(models.Model):
+class EventDetails(models.Model): 
     inviter = models.ForeignKey(Inviter,on_delete=models.CASCADE)
-    e_name = models.CharField(max_length=100,verbose_name='Event Name')
+    e_name = models.CharField(max_length=100,verbose_name='Event Name') 
     g_name = models.CharField(max_length=50,verbose_name='Groom Name')
     b_name = models.CharField(max_length=50,verbose_name='Bride Name')
     e_date = models.DateTimeField(verbose_name='Event Date')

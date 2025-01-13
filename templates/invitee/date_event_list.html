@@ -1,0 +1,18 @@
+{% extends "base_temp2.html" %}
+
+{% block title %}
+    Event List
+{% endblock %}
+
+{% block content %}
+    {% if events %}
+        <h3>Events on {{date}}</h3>
+        <ul>
+            {% for e in events %}
+                <li><a href="{% url 'invitee:event_details' e.id %}">{{e.e_name}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No events found for {{date}}</h3>
+    {% endif %}
+{% endblock %}

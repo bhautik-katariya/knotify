@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px 20px; /* Reduced vertical padding */
     background-color: #ffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -55,6 +55,11 @@ body {
     border-radius: 5px;
     text-decoration: none;
 }
+
+.navbar .btn:hover{
+    background-color: #e26666;
+    color: black;
+} 
 
 /* Hero Section */
 .hero {
@@ -118,59 +123,6 @@ body {
     font-size: 16px;
 }
 
-/* .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #ffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed; 
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #e26666;
-}
-
-.navbar .logo span {
-    color: #3d342b;
-}
-
-.navbar ul {
-    display: flex;
-    list-style: none;
-}
-
-.navbar ul li {
-    margin: 0 15px;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-.navbar .btn {
-    background-color: #c91b1b;
-    color: white;
-    position: relative;
-    margin-right: 50px;
-    padding: 10px 15px;
-    border-radius: 5px; 
-    text-decoration: none;
-} */
-
-.navbar .btn:hover{
-    background-color: #e26666;
-    color: black;
-} 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -179,7 +131,7 @@ body {
 }
 
 .main {
-    margin-top: 70px;
+    margin-top: 10px;
     margin-left: 270px;
     padding: 20px;
 }
@@ -190,6 +142,7 @@ body {
     padding: 30px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-left: 250px; /* Adjust this to match the sidebar's width */
+    margin-top: 50px;
 }
 
 .calendar-header {

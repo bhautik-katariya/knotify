@@ -1,30 +1,32 @@
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render,redirect
+from django.http import Http404
+from datetime import datetime
 from .models import *
 from Knotify.forms import *
+from Inviter.models import *
 
 # Create your views here.
 
+folder = 'invitee/'
+
 def index(request):
-    return render(request, 'invitee/calendar.html')
+    username = request.session['username']
+    invitee = Invitee.objects.get(username=username)  # Get Invitee object by username
+    events = EventDetails.objects.filter(invitee=invitee)  # Filter events based on the Invitee object
+    event_dates = {e.e_date.strftime('%Y-%m-%d'): True for e in events}  # Serialize the event dates
+    return render(request, 'invitee/calendar.html', {'event_dates': json.dumps(event_dates, cls=DjangoJSONEncoder)})
 
-def date_event(request, date):
-    return render(request,'invitee/event_details.html')
+def date_event_list(request, e_date):
+    username = request.session['username']
+    invitee = Invitee.objects.get(username=username)
+    date_obj = datetime.strptime(e_date, '%Y-%m-%d')
+    events = EventDetails.objects.filter(invitee=invitee, e_date__date=date_obj.date())
+    # if not events:
+    #     raise Http404("No events found")
+    return render(request,'invitee/date_event_list.html', {'events': events, 'date': e_date})
 
-def edit_profile(request):
-    eprofile = Invitee.objects.filter(username=request.session['username'])
-    if request.method == 'POST':
-        form = UserForm(request.POST,instance=eprofile)
-        if form.is_valid():
-            data = {
-                'username':form.cleaned_data['username'],
-                'f_name':form.cleaned_data['f_name'],
-                'l_name':form.cleaned_data['l_name'],
-                'email':form.cleaned_data['email'],
-                'phone_no':form.cleaned_data['phone_no'],
-                'password':form.cleaned_data['password'],
-            }
-            eprofile.update(**data)
-            return redirect('invitee:index')
-        else:
-            form = UserForm(instance=eprofile)
-        return render(request,'invitee/calendar.html')
+def event_details(request, event_id):
+    event = EventDetails.objects.get(pk=event_id)
+    return render(request, 'invitee/event_details.html',{'event':event})
