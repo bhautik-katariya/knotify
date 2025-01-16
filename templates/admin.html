@@ -1,0 +1,105 @@
+{% extends "base_temp2.html" %}
+
+{% block title %}
+    Admin
+{% endblock %}
+
+{% block content %}
+
+<h1>Inviter List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone No</th>
+                <th>Password</th>
+                <th>Created at</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ir in inviter %}
+                <tr>
+                    <td>{{ ir.username }}</td>
+                    <td>{{ ir.f_name }}</td>
+                    <td>{{ ir.l_name }}</td>
+                    <td>{{ ir.email }}</td>
+                    <td>{{ ir.phone_no }}</td>
+                    <td>{{ ir.password }}</td>
+                    <td>{{ ir.created_at }}</td>
+                    <td><a class = 'btn' href="{% url 'edit_profile' ir.username %}">Edit</a></td>              
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+       <br> <br>
+
+       <h1>Invitee List</h1>
+       <table>
+           <thead>
+               <tr>
+                   <th>Username</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Email</th>
+                   <th>Phone No</th>
+                   <th>Password</th>
+                   <th>Created at</th>
+                   <th>Edit</th>
+                   <th>Delete</th>
+               </tr>
+           </thead>
+           <tbody>
+               {% for ie in invitee %}
+                   <tr>
+                       <td>{{ ie.username }}</td>
+                       <td>{{ ie.f_name }}</td>
+                       <td>{{ ie.l_name }}</td>
+                       <td>{{ ie.email }}</td>
+                       <td>{{ ie.phone_no }}</td>
+                       <td>{{ ie.password }}</td>
+                       <td>{{ ie.created_at }}</td>
+                       <td><a class = 'btn' href="{% url 'edit_profile' ie.username %}">Edit</a></td>
+                   </tr>
+               {% endfor %}
+           </tbody>
+       </table>   
+
+    <br> <br>
+
+<h1>Events List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Inviter</th>
+                <th>Event Name</th>
+                <th>Groom Name</th>
+                <th>Bride Name</th>
+                <th>Event Date</th>
+                <th>Place</th>
+                <th>Invitee</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in events %}
+                <tr>
+                    <td>{{ e.inviter }}</td>
+                    <td>{{ e.e_name }}</td>
+                    <td>{{ e.g_name }}</td>
+                    <td>{{ e.b_name }}</td>
+                    <td>{{ e.e_date }}</td>
+                    <td>{{ e.place }}</td>
+                    <td>{{ e.invitee }}</td>
+                    <td><a class = 'btn' href="{% url 'inviter:event_update' e.id %}">Edit</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

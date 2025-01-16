@@ -25,7 +25,8 @@ urlpatterns = [
     path('', views.Login.as_view(), name='login'),
     path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
-    path('edit-profile/',views.edit_profile,name='edit_profile'),   
+    path('admin_display', views.admin, name='admin'),
+    path('edit-profile/<str:username>',views.edit_profile,name='edit_profile'),   
     path('invitee/', include('Invitee.urls',namespace='invitee')),
     path('inviter/', include('Inviter.urls',namespace='inviter')),
 ] 

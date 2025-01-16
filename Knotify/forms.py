@@ -8,6 +8,7 @@ class LoginForm(forms.Form):
     USER_ROLE = [
         ('invitee','Invitee'),
         ('inviter','Inviter'),
+        ('admin','Admin'),
     ]
     user_role = forms.ChoiceField(choices=USER_ROLE,widget=forms.RadioSelect)
     username = forms.CharField(max_length=100)
@@ -17,6 +18,7 @@ class UserForm(forms.Form):
     USER_ROLE = [
         ('invitee','Invitee'),
         ('inviter','Inviter'),
+        ('admin','Admin'),
     ]
     user_role = forms.ChoiceField(choices=USER_ROLE,widget=forms.RadioSelect)
     username = forms.CharField(max_length=100)

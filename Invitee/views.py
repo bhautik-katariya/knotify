@@ -16,7 +16,7 @@ def index(request):
     invitee = Invitee.objects.get(username=username)  # Get Invitee object by username
     events = EventDetails.objects.filter(invitee=invitee)  # Filter events based on the Invitee object
     event_dates = {e.e_date.strftime('%Y-%m-%d'): True for e in events}  # Serialize the event dates
-    return render(request, 'invitee/calendar.html', {'event_dates': json.dumps(event_dates, cls=DjangoJSONEncoder)})
+    return render(request, 'invitee/calendar.html', {'event_dates': json.dumps(event_dates, cls=DjangoJSONEncoder), 'username':username})
 
 def date_event_list(request, e_date):
     username = request.session['username']

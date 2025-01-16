@@ -7,7 +7,7 @@
 {% block content %}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="{% url 'inviter:add_event' %}" class='btn'>Add Event</a>
-            <a href="{% url 'edit_profile' %}" class='btn'>Edit Profile</a>
+            <a href="{% url 'edit_profile' username %}" class='btn'>Edit Profile</a>
           </div>
         <br>
         <table border="1">
@@ -21,6 +21,7 @@
                     <th>Day</th>
                     <th>Time</th>
                     <th>Place</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ e.e_date|date:"l" }}</td>              
                         <td>{{ e.e_date|time:"g:i A" }}</td>
                         <td>{{ e.place }}</td>
+                        <td><a class = 'btn' href="{% url 'inviter:event_update' e.id %}">Edit</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

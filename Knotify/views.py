@@ -56,6 +56,12 @@ class Login(View):
                     user = Inviter.objects.get(username=username)
                 except Inviter.DoesNotExist:
                     form.add_error('username', 'Invalid username')
+            elif user_role == 'admin':
+                if username == 'admin' and password == '12345':
+                    request.session['username'] == username
+                    return redirect('admin')
+                else:
+                    form.add_error(None, 'Invalid username/password')
             else: 
                 form.add_error('user_role','select any one role')
 
@@ -71,11 +77,10 @@ class Login(View):
                         return redirect('inviter:dashboard')
                 else:
                     form.add_error('password', 'Invalid password')
-
         return render(request, self.template_name, {'form': form})
     
 
-def edit_profile(request):
+def edit_profile(request, username):
     user_role = request.session['user_role']
     username = request.session['username']
 
@@ -121,3 +126,15 @@ def edit_profile(request):
 def logout(request):
     request.session.flush() # delete session and cookie and create empty session
     return redirect('login')
+
+def admin(request):
+    invitee = Invitee.objects.all() 
+    inviter = Inviter.objects.all()
+    events = EventDetails.objects.all()
+    
+    context = {
+        'invitee':invitee,
+        'inviter':inviter,
+        'events':events
+    }
+    return render(request, 'admin.html', context)

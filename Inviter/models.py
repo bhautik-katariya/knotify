@@ -3,7 +3,7 @@ from Invitee.models import *
 
 # Create your models here.
 
-class Inviter(models.Model):
+class Inviter(models.Model): 
     username = models.CharField(max_length=100,unique=True)
     f_name = models.CharField(max_length=100, verbose_name='First name') 
     l_name = models.CharField(max_length=100, verbose_name='Last name')   
