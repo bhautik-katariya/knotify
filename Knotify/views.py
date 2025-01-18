@@ -58,7 +58,6 @@ class Login(View):
                     form.add_error('username', 'Invalid username')
             elif user_role == 'admin':
                 if username == 'admin' and password == '12345':
-                    request.session['username'] == username
                     return redirect('admin')
                 else:
                     form.add_error(None, 'Invalid username/password')

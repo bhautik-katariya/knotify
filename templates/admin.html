@@ -17,8 +17,6 @@
                 <th>Phone No</th>
                 <th>Password</th>
                 <th>Created at</th>
-                <th>Edit</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +28,7 @@
                     <td>{{ ir.email }}</td>
                     <td>{{ ir.phone_no }}</td>
                     <td>{{ ir.password }}</td>
-                    <td>{{ ir.created_at }}</td>
-                    <td><a class = 'btn' href="{% url 'edit_profile' ir.username %}">Edit</a></td>              
+                    <td>{{ ir.created_at }}</td>              
                 </tr>
             {% endfor %}
         </tbody>
@@ -50,8 +47,6 @@
                    <th>Phone No</th>
                    <th>Password</th>
                    <th>Created at</th>
-                   <th>Edit</th>
-                   <th>Delete</th>
                </tr>
            </thead>
            <tbody>
@@ -64,7 +59,6 @@
                        <td>{{ ie.phone_no }}</td>
                        <td>{{ ie.password }}</td>
                        <td>{{ ie.created_at }}</td>
-                       <td><a class = 'btn' href="{% url 'edit_profile' ie.username %}">Edit</a></td>
                    </tr>
                {% endfor %}
            </tbody>
@@ -83,8 +77,6 @@
                 <th>Event Date</th>
                 <th>Place</th>
                 <th>Invitee</th>
-                <th>Edit</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -97,7 +89,6 @@
                     <td>{{ e.e_date }}</td>
                     <td>{{ e.place }}</td>
                     <td>{{ e.invitee }}</td>
-                    <td><a class = 'btn' href="{% url 'inviter:event_update' e.id %}">Edit</a></td>
                 </tr>
             {% endfor %}
         </tbody>
